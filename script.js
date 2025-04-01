@@ -56,3 +56,19 @@ function addChoice(text, nextStep) {
     choice.onclick = function () { choose(nextStep); };
     document.getElementById("game").appendChild(choice);
 }
+
+window.onload = function() {
+    let bgMusic = document.getElementById("bg-music");
+    let whispers = document.getElementById("whispers");
+
+    document.body.addEventListener("click", function() {
+        if (bgMusic.paused) {
+            bgMusic.volume = 0.3;
+            bgMusic.play();
+        }
+        if (whispers.paused) {
+            whispers.volume = 0.2;
+            whispers.play();
+        }
+    }, { once: true }); // Plays music on first click
+};
