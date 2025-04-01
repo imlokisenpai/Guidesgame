@@ -1,74 +1,56 @@
-document.getElementById("bg-music").volume = 0.3;
-document.getElementById("bg-music").play();
-
-let obedience = 0;
-let hints = [
-    "A mirror briefly reflects the guide's face as yours.",
-    "A strange note reads: 'Wake up. Remember.'",
-    "Faint whispers say: 'You are not where you should be.'"
-];
-
-function showHint() {
-    let hintText = hints[Math.floor(Math.random() * hints.length)];
-    document.getElementById("story").innerText += `\n[Hint: ${hintText}]`;
-}
-
 function choose(option) {
     let story = document.getElementById("story");
     let game = document.getElementById("game");
-    game.innerHTML = "";
+    
+    game.innerHTML = ""; // Clears previous choices
 
     if (option === 'guide') {
-        obedience++;
-        if (obedience >= 3) {
-            story.innerText = "You feel... strange. The world fades. A new person wakes up in their room. 'I am your guide,' you say.";
-            addChoice("Restart", 'restart');
-            return;
-        }
-        story.innerText = "The guide nods. 'We must jump between worlds to return home.' The room fades, and you find yourself in a twisted landscape where eyes watch you from the shadows.";
-        showHint();
-        addChoice("Step forward into the unknown", 'world_jump');
-        addChoice("Question the guide's motives", 'question_guide');
+        story.innerText = "The guide nods. 'We must jump between worlds to return home.' The world shifts...";
+        addChoice("Follow the guide", 'follow');
+        addChoice("Doubt the guide", 'doubt');
     } else if (option === 'alone') {
-        story.innerText = "You ignore the guide and decide to explore alone. The door creaks open, revealing a silent, empty world. Yet, something is watching you...";
-        showHint();
-        addChoice("Go back and sleep", 'sleep');
-        addChoice("Keep walking forward", 'explore');
-    }
-}
-
-function solveRiddle() {
-    let input = document.getElementById("riddle-input").value.toLowerCase();
-    if (input === "i am you") {
-        document.getElementById("riddle-section").style.display = "none";
-        let story = document.getElementById("story");
-        story.innerText = "Realization crashes over you. The guide is not separate. He is you, lost in fear. The only way out is to go back to the first world.";
-        addChoice("Return to the first world", 'sleep');
-    } else {
-        alert("The guide's form distorts violently. The nightmare continues...");
+        story.innerText = "You step outside. The air is heavy. Someone is watching.";
+        addChoice("Keep walking", 'explore');
+        addChoice("Go back inside", 'sleep');
+    } else if (option === 'follow') {
+        story.innerText = "You trust the guide. A door appears, leading into darkness.";
+        addChoice("Step through the door", 'world1');
+        addChoice("Turn back", 'alone');
+    } else if (option === 'doubt') {
+        story.innerText = "You hesitate. The guide’s face flickers with unease.";
+        addChoice("Ask him about his past", 'ask_guide');
+        addChoice("Ignore him and walk away", 'alone');
+    } else if (option === 'explore') {
+        story.innerText = "The streets are empty, but you feel unseen eyes watching you.";
+        addChoice("Run", 'run');
+        addChoice("Stand still", 'still');
+    } else if (option === 'sleep') {
+        story.innerText = "You wake up. Was it all a dream?";
+        addChoice("Start over", 'restart');
+    } else if (option === 'world1') {
+        story.innerText = "You enter a crimson-lit world. A figure stands in the mist.";
+        addChoice("Approach the figure", 'figure');
+        addChoice("Hide", 'hide');
+    } else if (option === 'ask_guide') {
+        story.innerText = "The guide whispers: 'I... was once like you.' His form distorts.";
+        addChoice("Press him for more", 'truth');
+        addChoice("Ignore and move on", 'alone');
+    } else if (option === 'truth') {
+        story.innerText = "The guide's voice wavers: 'I am... you.'";
+        addChoice("What does that mean?", 'realization');
+    } else if (option === 'realization') {
+        story.innerText = "Memories flood back. This world is a dream. You must return.";
+        addChoice("Wake up", 'sleep');
+    } else if (option === 'restart') {
+        story.innerText = "You wake up in your room. But something feels... off.";
+        addChoice("Look around", 'alone');
     }
 }
 
 function addChoice(text, nextStep) {
-    let choice = document.createElement("span");
+    let choice = document.createElement("button");
     choice.className = "choice";
     choice.innerText = text;
     choice.onclick = function () { choose(nextStep); };
     document.getElementById("game").appendChild(choice);
 }
-
-window.onload = function() {
-    let bgMusic = document.getElementById("bg-music");
-    let whispers = document.getElementById("whispers");
-
-    document.body.addEventListener("click", function() {
-        if (bgMusic.paused) {
-            bgMusic.volume = 0.3;
-            bgMusic.play();
-        }
-        if (whispers.paused) {
-            whispers.volume = 0.2;
-            whispers.play();
-        }
-    }, { once: true }); // Plays music on first click
-};
