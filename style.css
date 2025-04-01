@@ -1,0 +1,46 @@
+body {
+    background-color: black;
+    color: #33ff33;
+    font-family: "Courier New", monospace;
+    padding: 20px;
+    text-align: center;
+}
+
+#game {
+    max-width: 600px;
+    margin: auto;
+}
+
+.choice {
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    color: #ff3333;
+}
+
+#riddle-section {
+    display: none;
+    margin-top: 20px;
+    color: #ffff33;
+}
+
+#riddle-input {
+    background-color: black;
+    color: #33ff33;
+    border: 1px solid #33ff33;
+    font-family: "Courier New", monospace;
+    padding: 5px;
+}
+
+@keyframes glitch {
+    0% { opacity: 1; transform: translateX(0); }
+    20% { opacity: 0.8; transform: translateX(-2px); }
+    40% { opacity: 1; transform: translateX(2px); }
+    60% { opacity: 0.6; transform: translateX(-1px); }
+    80% { opacity: 1; transform: translateX(1px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.glitch-text {
+    animation: glitch 0.5s infinite;
+}
