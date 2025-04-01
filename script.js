@@ -1,7 +1,7 @@
 function choose(option) {
     let story = document.getElementById("story");
     let game = document.getElementById("game");
-    
+
     game.innerHTML = ""; // Clears previous choices
 
     if (option === 'guide') {
@@ -52,6 +52,18 @@ function choose(option) {
     } else if (option === 'restart') {
         story.innerText = "You wake up in your room. But something feels... off.";
         addChoice("Look around", 'alone');
+    } else if (option === 'talk_figure') {
+        story.innerText = "The figure speaks: 'You have been here before, haven't you?'";
+        addChoice("Ask what they mean", 'truth');
+    } else if (option === 'confront') {
+        story.innerText = "You turn around, but nothing is there. Yet, the feeling remains.";
+        addChoice("Keep moving", 'explore');
+    } else if (option === 'still') {
+        story.innerText = "The world shifts around you. You feel trapped, but why?";
+        addChoice("Think back", 'realization');
+    } else if (option === 'run') {
+        story.innerText = "No matter how far you run, the world loops back. The truth awaits.";
+        addChoice("Stop and listen", 'truth');
     } else {
         story.innerText = "Something is wrong... you feel lost.";
         addChoice("Wake up", 'restart');
