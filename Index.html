@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Choice Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="assets/bg-music.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="whispers" src="assets/whispers.mp3" loop></audio>
+
+    <div id="game">
+        <p id="story">You wake up in your room. A shadowy figure stands before you. "I am your guide," he says. "You are trapped in a world where you do not belong."</p>
+        <span class="choice" onclick="choose('guide')">Accept the guide's help</span>
+        <span class="choice" onclick="choose('alone')">Go on your own</span>
+    </div>
+
+    <div id="riddle-section">
+        <p class="glitch-text">The guide flickers: "You see me, yet you do not. You are me, yet you are not. Speak the words that free you."</p>
+        <input type="text" id="riddle-input" placeholder="Type your answer...">
+        <button onclick="solveRiddle()">Submit</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
