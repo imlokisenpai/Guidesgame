@@ -31,6 +31,14 @@ function choose(option) {
         story.innerText = "You enter a crimson-lit world. A figure stands in the mist.";
         addChoice("Approach the figure", 'figure');
         addChoice("Hide", 'hide');
+    } else if (option === 'figure') {
+        story.innerText = "The figure turns to you, its face flickering between familiar and monstrous.";
+        addChoice("Talk to it", 'talk_figure');
+        addChoice("Run away", 'run');
+    } else if (option === 'hide') {
+        story.innerText = "You crouch behind a ruined wall, but you feel a breath on your neck.";
+        addChoice("Turn around", 'confront');
+        addChoice("Stay silent", 'still');
     } else if (option === 'ask_guide') {
         story.innerText = "The guide whispers: 'I... was once like you.' His form distorts.";
         addChoice("Press him for more", 'truth');
@@ -44,6 +52,9 @@ function choose(option) {
     } else if (option === 'restart') {
         story.innerText = "You wake up in your room. But something feels... off.";
         addChoice("Look around", 'alone');
+    } else {
+        story.innerText = "Something is wrong... you feel lost.";
+        addChoice("Wake up", 'restart');
     }
 }
 
